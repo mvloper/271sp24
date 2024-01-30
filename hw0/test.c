@@ -1,5 +1,5 @@
 // This test.c, a file for testing C.
-#include <stdio.h>
+#include <stdio.h> //for printf
 
 int main()
 {

@@ -2,17 +2,26 @@
 
 // A simple program to sort an array of integers in C
 
-/* YOUR WORK HERE */
-
 // Input: An array of integers and its length
 // Output: Nothing
 // Side Effect: The input array is sorted from least to greatest
-void sort(int *arr, int len)
+void sort(int *arr, int len) // selection sort :|
 {
-	printf("hello\n") ;
+	int i, j;
+	for ( i = 0; i < len - 1; i++ )
+	{
+		for ( j = 0; j < len - i - 1; j++ )
+		{
+			if (arr[j] > arr[j + 1])
+			{
+				int temp = arr[j+1];
+				arr[j+1] = arr[j];
+				arr[j] = temp;
+			}
+		}
+	}
 	return;
 }
-
 /* END YOUR WORK */
 
 /* FEEDBACK FUNCTIONS */

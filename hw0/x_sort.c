@@ -5,7 +5,7 @@
 // Input: An array of integers and its length
 // Output: Nothing
 // Side Effect: The input array is sorted from least to greatest
-void sort(int *arr, int len) // selection sort :|
+void sort(int *arr, int len) // bubble sort :|
 {
 	int i, j;
 	for ( i = 0; i < len - 1; i++ )

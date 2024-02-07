@@ -2,9 +2,9 @@
 
 // A simple program to sort an array of integers in C
 
-// Input: An array of integers and its length
-// Output: Nothing
-// Side Effect: The input array is sorted from least to greatest
+// input: array of ints and its length
+// output: nothing
+// side effect: prints the array
 void print_arr(int *arr, int len){
 	printf("printing arr at location %p of size %d:\n [ ", arr, len);
 	int i;
@@ -17,6 +17,9 @@ void print_arr(int *arr, int len){
 	printf(" ]\n");
 }
 
+// Input: An array of integers and its length
+// Output: Nothing
+// Side Effect: The input array is sorted from least to greatest
 void sort(int *arr, int len) // bubble sort :|
 {
 	int i, j;

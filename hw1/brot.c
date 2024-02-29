@@ -31,11 +31,19 @@ int max(int a, int b){
 // Hint - how many times should loop? How many times should you call malloc?
 unsigned char ***create_base(int size)
 {
-	unsigned char *one = malloc(sizeof(char) * size);
-	unsigned char *two = malloc(sizeof(char) * size);
-	unsigned char *three = malloc(sizeof(char) * size);
-	unsigned char *arr[3][size][size]; //arrays are of fixed size
-	return NULL;
+	unsigned char ***base = malloc(sizeof(unsigned char**) * size);
+	for (int i = 0; i < size; i++){
+		unsigned char **col = malloc(sizeof(unsigned char*) * size);
+		for (int j = 0; j < size; j++){
+			unsigned char *thing = malloc(sizeof(unsigned char) * 3);
+			thing[0] = 0;
+			thing[1] = 0;
+			thing[2] = 0;
+			col[j] = thing;
+		}
+		base[i] = col;
+	}
+	return base;
 }
 
 // Calculate z_(n+1) = z_n^2 + c and return the result

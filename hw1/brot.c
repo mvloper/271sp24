@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <complex.h>
-
+ 
 //takes two integers
 //returns the one that is less
 int min(int a, int b){
@@ -62,7 +62,7 @@ void c2b(double complex c, int size, int *x, int *y)
 {
 	*x = (int) (creal(c) + 2.0) * ((double) size) / 4.0;
 	*y = (int) (cimag(c) + 2.0) * ((double) size) / 4.0;
-	*x = min(*x, size - 1);
+*x = min(*x, size - 1);
 	*y = min(*y, size - 1);
 	*x = max(*x, 0);
 	*y = max(*y, 0);
@@ -98,7 +98,7 @@ int escapes(double complex c, int iters)
 // in C, we accept a 3d array base, an integer for size and for iterations, a color channel of 0,1,2, and a complex value c
 void one_val(unsigned char ***base, int size, int iters, int color, double complex c)
 {
-	double complex z_n = c;
+double complex z_n = c;
 	if (0 == int escapes(c, iters)){
 		return;
 	}
@@ -141,7 +141,7 @@ def one_val(base, iters, color, c):
 // in C, we accept a 3d array base, an integer for size and for iterations
 void get_colors(unsigned char ***base, int size, int iters)
 {
-	int i_list[3] = {iters, iters * 10, iters * 100};
+int i_list[3] = {iters, iters * 10, iters * 100};
 	int x, y, i;
 	for (x = 0; x < size; x++){
 		for (y = 0; y < size; y++){

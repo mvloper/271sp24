@@ -9,7 +9,7 @@ int min(int a, int b){
 		return a;
 	}
 	if (b < a){
-		return b
+		return b;
 	}
 }
 
@@ -20,7 +20,7 @@ int max(int a, int b){
 		return a;
 	}
 	if (b > a){
-		return b
+		return b;
 	}
 }
  
@@ -62,7 +62,7 @@ void c2b(double complex c, int size, int *x, int *y)
 {
 	*x = (int) (creal(c) + 2.0) * ((double) size) / 4.0;
 	*y = (int) (cimag(c) + 2.0) * ((double) size) / 4.0;
-*x = min(*x, size - 1);
+	*x = min(*x, size - 1);
 	*y = min(*y, size - 1);
 	*x = max(*x, 0);
 	*y = max(*y, 0);
@@ -85,6 +85,7 @@ double complex b2c(int size, int x, int y)
 // I included the absolute value sample code
 int escapes(double complex c, int iters)
 {
+	double complex z_n = c;
 	int i;
 	for (i = 0; i < iters; i++){
 		z_n = m_seq(z_n, c);
@@ -98,8 +99,9 @@ int escapes(double complex c, int iters)
 // in C, we accept a 3d array base, an integer for size and for iterations, a color channel of 0,1,2, and a complex value c
 void one_val(unsigned char ***base, int size, int iters, int color, double complex c)
 {
-double complex z_n = c;
-	if (0 == int escapes(c, iters)){
+	double complex z_n = c;
+	int esc = escapes(c, iters);
+	if (0 == esc){
 		return;
 	}
 	int i;
@@ -108,14 +110,22 @@ double complex z_n = c;
 			return;
 		}
 		int a = 0, b = 0;
-		int *x = a;
-		int *y = b;
+		int x = a;
+		int y = b;
 		c2b(z_n, size, *x, *y);
-		*x = min(*x, size - 1);
-		*y = min(*y, size - 1);
-		/*idk how arrays work*/
+		x = min(x, size - 1);
+		y = min(y, size - 1);
+		unsigned char *v = base[x][y][color];
+		v += 25;
+		if (v > 255){
+			v = 255;
+		}
+		base[x][y][color] = v;
+		z_n = m_seq(z_n, c);
 	}
 	return;
+
+
 /*py
 def one_val(base, iters, color, c):
 	size = len(base)
@@ -146,7 +156,7 @@ int i_list[3] = {iters, iters * 10, iters * 100};
 	for (x = 0; x < size; x++){
 		for (y = 0; y < size; y++){
 			for (i = 0; i < 3; i++){
-				one_val(base, i_list[i], i, b2c(x, y, size));
+				one_val(base, size, i_list[i], i, b2c(x, y, size));
 			}
 		}
 	}
@@ -190,6 +200,6 @@ void make_brot(int size, int iters)
  
 int main()
 {
-	//make_brot(4000,50);
+	make_brot(4000,50);
 	return 0;
 }

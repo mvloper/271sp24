@@ -140,7 +140,45 @@ void get_colors(unsigned char ***base, int size, int iters){
 	return;
 }
 
+void sort(int *arr, int len) // bubble sort :|
+{
+	int i, j;
+	for ( i = 0; i < len - 1; i++ )
+	{
+		for ( j = 0; j < len - i - 1; j++ )
+		{
+			if (arr[j] > arr[j + 1])
+			{
+				int temp = arr[j+1];
+				arr[j+1] = arr[j];
+				arr[j] = temp;
+			}
+		}
+	}
+	return;
+}
 
+void median(unsigned char ***base, int size, int colr){
+	// broken :(
+	int winw = 2;//CHANGE WIN SIZE IF YOU CHANGE THIS
+	int win[2*2] = {0};
+	int x, y, fx, fy, i, temp, edge = winw/2;
+	for (x = edge; x < (size-edge); x++){
+		// printf("%d\n", x);
+		for (y = edge; y < (size-edge); y++){
+			i = 0;
+			for (fx = 0; fx < winw; fx++){
+				for (fy = 0; fy < winw; fy++){
+					win[i] = base[x + fx - edge][y + fy - edge][colr];
+					temp = i;
+					i = temp + 1;
+				}
+			}
+			sort(win, winw*winw);
+			base[x][y][colr] = win[(winw * winw) / 2];
+		}
+	}
+}
 
 void equalize(unsigned char ***base, int size){
 	// OPTIONAL
@@ -148,6 +186,11 @@ void equalize(unsigned char ***base, int size){
 	// The Python sample had a hacky solution.
 	// We accept a base, and equalize values to percentiles rather than counts
 	// You equalized images in CS 151 ImageShop.
+	int a;
+	for (a = 0; a < 3; a++){
+		median(base, size, a);
+		printf("equalized %d\n", a);
+	}
 	return;
 }
  
@@ -161,6 +204,8 @@ void make_brot(int size, int iters){
 	static unsigned char color[3];
 	unsigned char ***base = create_base(size);
 	get_colors(base, size, iters);
+	printf("finished get_colors");
+	// equalize(base, size);
 	fflush(stdout);
 	for ( int x = 0 ; x < size ; x++ ){
 		for ( int y = 0 ; y < size ; y++ ){
@@ -178,6 +223,6 @@ void make_brot(int size, int iters){
  
 int main()
 {
-	make_brot(256,50);
+	make_brot(4000,50);
 	return 0;
 }

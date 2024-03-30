@@ -1,0 +1,32 @@
+The code and the output both look great! It was fun seeing a bubble sort, a completely reasonable thing to do on smaller projects with tight deadlines.
+
+Other than what appears to be a single repeated clause and some stylistic omitted casts, I think this is really well done. Just a few comments below!
+
+I don't remember how much extra credit I promised, but you get all of it - the image looks good, and you wrote good code to equalize.
+
+I'm sorry I never really tracked down what local bug you had with the image not showing up. We'll have lab time coming up if you want to get into it.
+
+100+/100
+
+Great job!
+
+61c61
+< 	*x = (int) ((creall(c) + 2.0) *  size) / 4.0; // id use creal (no double long) and cast size, but i dont think that matters in any meaningful way
+---
+> 	*x = (int) ((creall(c) + 2.0) *  size) / 4.0;
+75c75
+< 	double a = x * 4.0 / size - 2.0; // i cast x and size here, but i dont think it matters
+---
+> 	double a = x * 4.0 / size - 2.0;
+118c118
+< 		if (v > 255){ // always false!
+---
+> 		if (v > 255){
+143c143
+< void sort(int *arr, int len) // bubble sort :| // if it works it works! man qsort and @ me on disc if you have questions
+---
+> void sort(int *arr, int len) // bubble sort :|
+226c226
+< 	make_brot(100,10);
+---
+> 	make_brot(4000,50);
